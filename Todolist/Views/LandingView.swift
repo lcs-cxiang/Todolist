@@ -10,24 +10,22 @@ import SwiftUI
 struct LandingView: View {
     @State var newItemDescription = ""
     @State var searchText = ""
+    @State var todos: [TodoItem] = exampleItems
     var body: some View {
         NavigationView {
             VStack {
-                List{
-                   
-                    ItemView(currentItem: firstItem)
-                    ItemView(currentItem: secondItem)
-                    ItemView(currentItem: thirdItem)
-                    
+                List(todos){ todo in
+                    ItemView(currentItem: todo)
                 }
                 .searchable(text: $searchText)
                 HStack{
                     TextField("Enter a to-do item", text: $newItemDescription)
                     
                     Button("ADD"){
-                        
+                        createToDo(withTitle: newItemDescription)
                     }
                     .font(.caption)
+                    .disabled(newItemDescription.isEmpty == true)
                 }
                 .padding(20)
             }
@@ -35,7 +33,16 @@ struct LandingView: View {
             .padding()
         }
     }
+    
+    func createToDo(withTitle title: String){
+        let todo = TodoItem(
+            title: title,
+            done: false
+        )
+        todos.append(todo)
+    }
 }
+
 
 #Preview {
     LandingView()
