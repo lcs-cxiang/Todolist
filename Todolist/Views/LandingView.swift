@@ -4,12 +4,13 @@
 //
 //  Created by Chujun Xiang on 2025-01-28.
 //
-
+import SwiftData
 import SwiftUI
 
 struct LandingView: View {
     @State var newItemDescription = ""
     @State var searchText = ""
+    @Environment(\.modelContext) var modelContext
     @State var todos: [TodoItem] = exampleItems
     var body: some View {
         NavigationView {
