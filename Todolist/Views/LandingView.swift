@@ -20,7 +20,7 @@ struct LandingView: View {
                     ItemView(title: "Finished Computer Science assignment",       done: true)
                     
                     ItemView(title: "Go for a run around Campus",
-                             done: true)
+                             done: false)
                     
                 }
                 .searchable(text: $searchText)
@@ -44,18 +44,3 @@ struct LandingView: View {
     LandingView()
 }
 
-struct ItemView: View {
-    
-    let title: String
-    let done: Bool
-    
-    var body: some View {
-        Label(
-            title: {
-                Text(title)
-            },icon: {
-                Image(systemName: done == true ? "checkmark.circle" : "circle")
-            }
-        )
-    }
-}
